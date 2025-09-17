@@ -210,7 +210,7 @@ export default {
       // Theme system
       isThemeOpen: false,
       themes: ['Dark', 'Light', 'Midnight', 'Valorant'],
-      currentTheme: 'Dark',
+      currentTheme: 'Light',
       
       // Skin sniping features
       skinSnipingEnabled: false,
