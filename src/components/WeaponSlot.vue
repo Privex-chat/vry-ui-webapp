@@ -1,10 +1,32 @@
 <template>
-  <div :class="['weapon-slot', { 
-    'has-weapon': weapon, 
-    'is-rare': isRareSkin, 
-    'is-melee': isMelee,
-    'has-rgb': hasRGBBuddy 
-  }]">
+  <div 
+    :class="['weapon-slot', { 
+      'has-weapon': weapon, 
+      'is-rare': isRareSkin, 
+      'is-melee': isMelee,
+      'has-rgb': hasRGBBuddy 
+    }]"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    @mousemove="handleMouseMove"
+  >
+    <!-- Tooltip -->
+    <transition name="tooltip">
+      <div 
+        v-if="showTooltip && tooltipContent" 
+        class="weapon-tooltip"
+        :style="{ left: tooltipX + 'px', top: tooltipY + 'px' }"
+      >
+        <div v-if="buddyName" class="tooltip-buddy">
+          <span class="buddy-name">{{ buddyName }}</span>
+        </div>
+        <div v-if="skinTier" class="tooltip-tier">
+          <span class="tier-label">Tier:</span>
+          <span :class="['tier-value', tierClass]">{{ tierLabel }}</span>
+        </div>
+      </div>
+    </transition>
+    
     <!-- Empty State -->
     <div v-if="!weapon" class="empty-slot">
       <div class="weapon-type-label">{{ weaponType }}</div>
@@ -34,7 +56,7 @@
         <img 
           v-if="weapon.buddy_displayIcon" 
           :src="weapon.buddy_displayIcon" 
-          alt="Gun Buddy"
+          :alt="buddyName || 'Gun Buddy'"
           :class="['buddy-image', { 'rgb-buddy': hasRGBBuddy }]"
         >
       </div>
@@ -51,12 +73,16 @@
   </div>
 </template>
 
+// WeaponSlot.vue - Updated script section
 <script>
+import { buddyService } from '@/services/buddyService';
+
 const RARE_SKINS = [
   'Kuronami', 'Prime', 'Reaver', 'Spectrum', 'Champions', 
   'Elderflame', 'Radiant Crisis', 'Protocol', 'RGX', 'Glitchpop',
   'Singularity', 'Sentinels of Light', 'Ruination', 'Zedd',
-  'Forsaken', 'Sovereign', 'Celestial', 'Magepunk', 'Ion'
+  'Forsaken', 'Sovereign', 'Celestial', 'Magepunk', 'Ion',
+  'Blastx', 'ChronoVoid', 'Gaia', 'Neptun', 'Oni', 'Origin'
 ]
 
 const TIER_MAP = {
@@ -83,6 +109,15 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      showTooltip: false,
+      tooltipX: 0,
+      tooltipY: 0,
+      resolvedBuddyName: null,
+      isLoadingBuddy: false
+    }
+  },
   computed: {
     isRareSkin() {
       if (!this.weapon || !this.weapon.skinDisplayName) return false
@@ -92,13 +127,37 @@ export default {
     
     hasRGBBuddy() {
       if (!this.weapon || !this.weapon.buddy_displayIcon) return false
-      return this.weapon.buddy_displayIcon.includes('fist_bump') || 
-             this.weapon.buddy_displayIcon.includes('riot_buddy')
+      const buddyIcon = this.weapon.buddy_displayIcon.toLowerCase()
+      return buddyIcon.includes('fist_bump') || 
+             buddyIcon.includes('riot_buddy') ||
+             buddyIcon.includes('riot_gun_buddy')
+    },
+    
+    buddyName() {
+      // Use resolved name from API if available
+      if (this.resolvedBuddyName) {
+        return this.resolvedBuddyName;
+      }
+      
+      // Fallback to existing logic while loading
+      if (!this.weapon) return null;
+      
+      // Check if we have buddy UUID to resolve
+      if (this.weapon.buddy_uuid) {
+        return null; // Will be resolved async
+      }
+      
+      // Fallback to existing display name or extraction from URL
+      if (this.weapon.buddy_displayName) {
+        return this.weapon.buddy_displayName;
+      }
+      
+      return this.extractBuddyNameFromURL();
     },
     
     skinTier() {
-      if (!this.weapon || !this.weapon.skin) return null
-      return TIER_MAP[this.weapon.skin]
+      if (!this.weapon || !this.weapon.tier) return null
+      return TIER_MAP[this.weapon.tier] || TIER_MAP[this.weapon.skin]
     },
     
     tierClass() {
@@ -109,13 +168,16 @@ export default {
     tierLabel() {
       if (!this.skinTier) return ''
       return this.skinTier.label
+    },
+    
+    tooltipContent() {
+      return this.weapon && (this.weapon.skinDisplayName || this.buddyName || this.skinTier)
     }
   },
   methods: {
     getSkinDisplayName() {
       if (!this.weapon || !this.weapon.skinDisplayName) return 'Standard'
       
-      // Remove weapon type from skin name for cleaner display
       let displayName = this.weapon.skinDisplayName
         .replace(this.weaponType, '')
         .replace('Collection', '')
@@ -126,6 +188,92 @@ export default {
       }
       
       return displayName
+    },
+    
+    extractBuddyNameFromURL() {
+      if (!this.weapon.buddy_displayIcon) return null;
+      
+      const iconUrl = this.weapon.buddy_displayIcon.toLowerCase();
+      
+      // Try to extract name from URL path as fallback
+      const match = iconUrl.match(/buddies\/([^/]+)\//i);
+      if (match && match[1]) {
+        return match[1].replace(/-/g, ' ').replace(/_/g, ' ')
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ') + ' Buddy';
+      }
+      
+      return 'Gun Buddy';
+    },
+    
+    async resolveBuddyName() {
+      if (!this.weapon || !this.weapon.buddy_uuid) return;
+      
+      if (this.isLoadingBuddy) return;
+      
+      this.isLoadingBuddy = true;
+      try {
+        const buddyName = await buddyService.getBuddyNameByUUID(this.weapon.buddy_uuid);
+        if (buddyName) {
+          this.resolvedBuddyName = buddyName;
+        }
+      } catch (error) {
+        console.error('Failed to resolve buddy name:', error);
+      } finally {
+        this.isLoadingBuddy = false;
+      }
+    },
+    
+    handleMouseEnter(event) {
+      if (this.weapon) {
+        this.showTooltip = true;
+        this.updateTooltipPosition(event);
+        
+        // Try to resolve buddy name when tooltip is shown
+        if (this.weapon.buddy_uuid && !this.resolvedBuddyName && !this.isLoadingBuddy) {
+          this.resolveBuddyName();
+        }
+      }
+    },
+    
+    handleMouseLeave() {
+      this.showTooltip = false;
+    },
+    
+    handleMouseMove(event) {
+      if (this.showTooltip) {
+        this.updateTooltipPosition(event);
+      }
+    },
+    
+    updateTooltipPosition(event) {
+      const rect = this.$el.getBoundingClientRect();
+      const tooltipOffset = 10;
+      
+      this.tooltipX = event.clientX - rect.left + tooltipOffset;
+      this.tooltipY = event.clientY - rect.top - 40;
+      
+      const maxX = rect.width - 150;
+      if (this.tooltipX > maxX) {
+        this.tooltipX = maxX;
+      }
+      
+      if (this.tooltipY < 0) {
+        this.tooltipY = event.clientY - rect.top + 20;
+      }
+    }
+  },
+  watch: {
+    weapon: {
+      immediate: true,
+      handler(newWeapon) {
+        this.resolvedBuddyName = null;
+        if (newWeapon && newWeapon.buddy_uuid) {
+          // Preload buddy name when weapon changes
+          this.resolveBuddyName();
+        }
+      }
     }
   }
 }
@@ -140,7 +288,7 @@ export default {
   margin-bottom: 0.5rem;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Changed to allow tooltip overflow */
 }
 
 .weapon-slot::before {
@@ -183,6 +331,77 @@ export default {
   50% { 
     box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.2);
   }
+}
+
+/* Tooltip Styles */
+.weapon-tooltip {
+  position: absolute;
+  background: linear-gradient(135deg, #1e2936 0%, #0f1923 100%);
+  border: 2px solid var(--accent-gold);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  min-width: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.tooltip-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+.tooltip-buddy {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+
+.buddy-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.buddy-name {
+  color: var(--accent-gold);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.tooltip-tier {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tier-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.tier-value {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Tooltip transition animation */
+.tooltip-enter-active,
+.tooltip-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.tooltip-enter-from,
+.tooltip-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
 }
 
 /* Empty Slot */
@@ -269,12 +488,13 @@ export default {
 /* Gun Buddy */
 .buddy-image {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  width: 20px;
-  height: 20px;
+  bottom: -8px;
+  right: -7px;
+  width: 31px;
+  height: 31px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  cursor: help;
 }
 
 .buddy-image.rgb-buddy {
@@ -307,6 +527,7 @@ export default {
   background: linear-gradient(90deg, #ff4655, #ffd700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .weapon-type {
@@ -327,27 +548,32 @@ export default {
   border: 1px solid currentColor;
 }
 
-.tier-select {
+.tier-select,
+.tier-value.tier-select {
   color: #0cebb8;
   background: rgba(12, 235, 184, 0.1);
 }
 
-.tier-deluxe {
+.tier-deluxe,
+.tier-value.tier-deluxe {
   color: #e04685;
   background: rgba(224, 70, 133, 0.1);
 }
 
-.tier-premium {
+.tier-premium,
+.tier-value.tier-premium {
   color: #d1548e;
   background: rgba(209, 84, 142, 0.1);
 }
 
-.tier-ultra {
+.tier-ultra,
+.tier-value.tier-ultra {
   color: #ffd700;
   background: rgba(255, 215, 0, 0.1);
 }
 
-.tier-exclusive {
+.tier-exclusive,
+.tier-value.tier-exclusive {
   color: #ff4655;
   background: rgba(255, 70, 85, 0.1);
 }
@@ -374,6 +600,12 @@ export default {
   .weapon-image-container {
     width: 100%;
     height: 60px;
+  }
+  
+  .weapon-tooltip {
+    font-size: 0.75rem;
+    min-width: 150px;
+    padding: 8px 12px;
   }
 }
 </style>

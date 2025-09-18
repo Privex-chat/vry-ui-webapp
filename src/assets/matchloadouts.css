@@ -113,75 +113,7 @@
   transition: background 0.3s ease;
 }
 
-/* Slide Theme Panel */
-.theme-slide {
-  position: fixed;
-  top: 160px;
-  right: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  transform: translateX(calc(100% - 80px)); /* mostly hidden */
-}
 
-.theme-slide.open {
-  transform: translateX(0); /* fully visible */
-}
-
-.theme-toggle {
-  position: absolute;
-  left: 12px;
-  top: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 8px 0 0 8px;
-  padding: 8px 14px;
-  cursor: pointer;
-  color: var(--text-primary);
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.theme-selector {
-  background: var(--bg-card);
-  padding: 12px;
-  border-left: 1px solid var(--border-color);
-  border-radius: 0 0 0 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-
-.theme-label {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.theme-buttons {
-  display: flex;
-  gap: 5px;
-}
-
-.theme-btn {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.theme-btn:hover {
-  background: var(--selection-bg);
-  color: var(--text-primary);
-}
-
-.theme-btn.active {
-  background: var(--accent-purple);
-  color: white;
-  border-color: var(--accent-purple);
-}
 
 /* Toast Notifications */
 .toast-container {

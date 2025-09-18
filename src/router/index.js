@@ -11,7 +11,8 @@ const routes = [
   {
     path: '/matchLoadouts',
     name: 'MatchLoadouts',
-    component: MatchLoadouts
+    component: MatchLoadouts,
+    meta: { hideTheme: true }
   },
   {
     path: '/github',

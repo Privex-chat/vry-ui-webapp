@@ -1,0 +1,299 @@
+/* Global Theme Variables - src/assets/theme.css */
+
+/* Dark Theme */
+[data-theme="Dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #252525;
+  --bg-card: #1e1e1e;
+  --ally-color: #007acc;
+  --enemy-color: #ff4655;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --border-color: #333333;
+  --accent-gold: #ffd700;
+  --accent-purple: #bd3944;
+  --success-color: #4caf50;
+  --header-bg: #2b2b2b;
+  --selection-bg: #3d3d3d;
+  --tier-select: #0cebb8;
+  --tier-deluxe: #e04685;
+  --tier-premium: #d1548e;
+  --tier-ultra: #ffd700;
+  --tier-exclusive: #ff4655;
+  --gradient-1: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  --gradient-accent: linear-gradient(135deg, #007acc, #bd3944);
+  --bg-secondary-rgb: 37, 37, 37;
+  --bg-card-rgb: 30, 30, 30;
+}
+
+/* Light Theme */
+[data-theme="Light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e8e8e8;
+  --bg-card: #ffffff;
+  --ally-color: #0078d4;
+  --enemy-color: #d13438;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --border-color: #cccccc;
+  --accent-gold: #ffb900;
+  --accent-purple: #e81123;
+  --success-color: #107c10;
+  --header-bg: #e0e0e0;
+  --selection-bg: #d0e3ff;
+  --tier-select: #477db2;
+  --tier-deluxe: #009e84;
+  --tier-premium: #d1548c;
+  --tier-exclusive: #f4955a;
+  --tier-ultra: #bda652;
+  --gradient-1: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  --gradient-accent: linear-gradient(135deg, #0078d4, #e81123);
+  --bg-secondary-rgb: 232, 232, 232;
+  --bg-card-rgb: 255, 255, 255;
+}
+
+/* Midnight Theme */
+[data-theme="Midnight"] {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #0d1117;
+  --ally-color: #58a6ff;
+  --enemy-color: #ff4655;
+  --text-primary: #c9d1d9;
+  --text-secondary: #8b949e;
+  --border-color: #30363d;
+  --accent-gold: #ffd700;
+  --accent-purple: #bd3944;
+  --success-color: #3fb950;
+  --header-bg: #010409;
+  --selection-bg: #1f6feb;
+  --tier-select: #477db2;
+  --tier-deluxe: #009e84;
+  --tier-premium: #d1548c;
+  --tier-exclusive: #f4955a;
+  --tier-ultra: #bda652;
+  --gradient-1: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  --gradient-accent: linear-gradient(135deg, #58a6ff, #bd3944);
+  --bg-secondary-rgb: 22, 27, 34;
+  --bg-card-rgb: 13, 17, 23;
+}
+
+/* Valorant Theme */
+[data-theme="Valorant"] {
+  --bg-primary: #0f1923;
+  --bg-secondary: #1b2838;
+  --bg-card: #0f1923;
+  --ally-color: #ff4655;
+  --enemy-color: #ff4655;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --border-color: #ff4655;
+  --accent-gold: #ffd700;
+  --accent-purple: #ff4655;
+  --success-color: #ff4655;
+  --header-bg: #111111;
+  --selection-bg: #ff4655;
+  --tier-select: #477db2;
+  --tier-deluxe: #009e84;
+  --tier-premium: #d1548c;
+  --tier-exclusive: #f4955a;
+  --tier-ultra: #bda652;
+  --gradient-1: linear-gradient(135deg, #0f1923 0%, #1b2838 100%);
+  --gradient-accent: linear-gradient(135deg, #ff4655, #ffd700);
+  --bg-secondary-rgb: 27, 40, 56;
+  --bg-card-rgb: 15, 25, 35;
+}
+
+/* Default to Dark theme */
+:root {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #252525;
+  --bg-card: #1e1e1e;
+  --ally-color: #007acc;
+  --enemy-color: #ff4655;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --border-color: #333333;
+  --accent-gold: #ffd700;
+  --accent-purple: #bd3944;
+  --success-color: #4caf50;
+  --header-bg: #2b2b2b;
+  --selection-bg: #3d3d3d;
+  --tier-select: #0cebb8;
+  --tier-deluxe: #e04685;
+  --tier-premium: #d1548e;
+  --tier-ultra: #ffd700;
+  --tier-exclusive: #ff4655;
+  --gradient-1: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  --gradient-accent: linear-gradient(135deg, #007acc, #bd3944);
+  --bg-secondary-rgb: 37, 37, 37;
+  --bg-card-rgb: 30, 30, 30;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background: var(--gradient-1);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  line-height: 1.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-accent);
+  border-radius: 10px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--accent-purple);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--accent-purple);
+  color: white;
+}
+
+/* Links */
+a {
+  color: var(--ally-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-gold);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
