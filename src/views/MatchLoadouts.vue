@@ -108,7 +108,7 @@
         <!-- Ally Team -->
         <div class="team-section ally-team">
           <div class="team-header">
-            <div class="team-label">Your Team</div>
+            <div class="team-label">Team 1</div>
             <div class="team-score" v-if="teamScores">{{ teamScores.ally || 0 }}</div>
           </div>
           <div class="players-grid">
@@ -125,7 +125,7 @@
         <!-- Enemy Team -->
         <div class="team-section enemy-team">
           <div class="team-header">
-            <div class="team-label">Enemy Team</div>
+            <div class="team-label">Team 2</div>
             <div class="team-score" v-if="teamScores">{{ teamScores.enemy || 0 }}</div>
           </div>
           <div class="players-grid">
