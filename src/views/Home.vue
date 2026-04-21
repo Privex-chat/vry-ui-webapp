@@ -11,13 +11,13 @@
           </p>
           <div class="cta-buttons">
             <a 
-              :href="vryhref || 'https://github.com/zayKenyon/VALORANT-rank-yoinker/releases/latest'" 
+              :href="vryhref || 'https://github.com/Privex-chat/vry-ui/releases/latest'" 
               class="btn-primary"
             >
               <span>Download {{ version || 'Now' }}</span>
             </a>
             <a 
-              href="https://github.com/zayKenyon/VALORANT-rank-yoinker" 
+              href="https://github.com/Privex-chat/vry-ui" 
               target="_blank"
               class="btn-secondary"
             >
@@ -37,7 +37,7 @@
     <!-- Quick Links -->
     <section class="quick-links">
       <div class="links-container">
-        <a href="https://github.com/zayKenyon/VALORANT-rank-yoinker" target="_blank" class="quick-link-card">
+        <a href="https://github.com/Privex-chat/vry-ui" target="_blank" class="quick-link-card">
           <img src="assets/GitHub.png" alt="GitHub" class="link-icon">
           <span>GitHub Repository</span>
         </a>
