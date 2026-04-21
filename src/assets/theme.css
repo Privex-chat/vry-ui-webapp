@@ -1,201 +1,336 @@
-/* Global Theme Variables - src/assets/theme.css */
+/* ============================================================
+   VRY-UI Theme System — src/assets/theme.css
+   ============================================================ */
 
-/* Dark Theme */
-[data-theme="Dark"] {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #252525;
-  --bg-card: #1e1e1e;
-  --ally-color: #007acc;
-  --enemy-color: #ff4655;
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --border-color: #333333;
-  --accent-gold: #ffd700;
-  --accent-purple: #bd3944;
-  --success-color: #4caf50;
-  --header-bg: #2b2b2b;
-  --selection-bg: #3d3d3d;
-  --tier-select: #0cebb8;
-  --tier-deluxe: #e04685;
-  --tier-premium: #d1548e;
-  --tier-ultra: #ffd700;
-  --tier-exclusive: #ff4655;
-  --gradient-1: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-  --gradient-accent: linear-gradient(135deg, #007acc, #bd3944);
-  --bg-secondary-rgb: 37, 37, 37;
-  --bg-card-rgb: 30, 30, 30;
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+/* ============================================================
+   DARK THEME (Default)
+   ============================================================ */
+[data-theme="Dark"], :root {
+  /* Backgrounds */
+  --bg-primary:            #111111;
+  --bg-secondary:          #1a1a1a;
+  --bg-card:               #1e1e1e;
+  --bg-card-hover:         #242424;
+  --bg-overlay:            rgba(0, 0, 0, 0.6);
+
+  /* Team Colors */
+  --ally-color:            #00b4d8;
+  --ally-color-muted:      rgba(0, 180, 216, 0.15);
+  --enemy-color:           #ff4655;
+  --enemy-color-muted:     rgba(255, 70, 85, 0.15);
+
+  /* Text */
+  --text-primary:          #f0f0f0;
+  --text-secondary:        #9a9a9a;
+  --text-muted:            #666666;
+
+  /* Borders */
+  --border-color:          #2a2a2a;
+  --border-color-hover:    #444444;
+
+  /* Accents */
+  --accent-gold:           #ffd700;
+  --accent-gold-muted:     rgba(255, 215, 0, 0.15);
+  --accent-purple:         #bd3944;
+  --accent-purple-muted:   rgba(189, 57, 68, 0.15);
+  --accent-blue:           #00b4d8;
+
+  /* Status */
+  --success-color:         #3ddc97;
+  --warning-color:         #f5a623;
+  --error-color:           #ff4655;
+  --info-color:            #00b4d8;
+
+  /* UI Elements */
+  --header-bg:             #0d0d0d;
+  --header-bg-rgb:         13, 13, 13;
+  --selection-bg:          rgba(255, 255, 255, 0.06);
+  --input-bg:              #141414;
+  --scrollbar-thumb:       rgba(255, 255, 255, 0.12);
+
+  /* Skin Tiers */
+  --tier-select:           #0cebb8;
+  --tier-select-bg:        rgba(12, 235, 184, 0.1);
+  --tier-deluxe:           #e04685;
+  --tier-deluxe-bg:        rgba(224, 70, 133, 0.1);
+  --tier-premium:          #d1548e;
+  --tier-premium-bg:       rgba(209, 84, 142, 0.1);
+  --tier-ultra:            #ffd700;
+  --tier-ultra-bg:         rgba(255, 215, 0, 0.1);
+  --tier-exclusive:        #ff4655;
+  --tier-exclusive-bg:     rgba(255, 70, 85, 0.1);
+
+  /* Gradients */
+  --gradient-1:            linear-gradient(160deg, #111111 0%, #1a1a1a 100%);
+  --gradient-accent:       linear-gradient(135deg, #007acc, #bd3944);
+  --gradient-card:         linear-gradient(135deg, #1e1e1e 0%, #181818 100%);
+
+  /* Shadows */
+  --shadow-sm:             0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:             0 8px 24px rgba(0,0,0,0.4);
+  --shadow-lg:             0 20px 60px rgba(0,0,0,0.5);
+  --shadow-glow-purple:    0 0 20px rgba(189, 57, 68, 0.3);
+  --shadow-glow-blue:      0 0 20px rgba(0, 180, 216, 0.3);
+
+  /* RGB for rgba() usage */
+  --accent-purple-rgb:     189, 57, 68;
+  --bg-secondary-rgb:      26, 26, 26;
+  --bg-card-rgb:           30, 30, 30;
 }
 
-/* Light Theme */
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
 [data-theme="Light"] {
-  --bg-primary: #f5f5f5;
-  --bg-secondary: #e8e8e8;
-  --bg-card: #ffffff;
-  --ally-color: #0078d4;
-  --enemy-color: #d13438;
-  --text-primary: #000000;
-  --text-secondary: #333333;
-  --border-color: #cccccc;
-  --accent-gold: #ffb900;
-  --accent-purple: #e81123;
-  --success-color: #107c10;
-  --header-bg: #e0e0e0;
-  --selection-bg: #d0e3ff;
-  --tier-select: #477db2;
-  --tier-deluxe: #009e84;
-  --tier-premium: #d1548c;
-  --tier-exclusive: #f4955a;
-  --tier-ultra: #bda652;
-  --gradient-1: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-  --gradient-accent: linear-gradient(135deg, #0078d4, #e81123);
-  --bg-secondary-rgb: 232, 232, 232;
-  --bg-card-rgb: 255, 255, 255;
+  --bg-primary:            #f2f2f2;
+  --bg-secondary:          #e8e8e8;
+  --bg-card:               #ffffff;
+  --bg-card-hover:         #f9f9f9;
+  --bg-overlay:            rgba(0, 0, 0, 0.4);
+
+  --ally-color:            #0078d4;
+  --ally-color-muted:      rgba(0, 120, 212, 0.12);
+  --enemy-color:           #d13438;
+  --enemy-color-muted:     rgba(209, 52, 56, 0.12);
+
+  --text-primary:          #111111;
+  --text-secondary:        #555555;
+  --text-muted:            #888888;
+
+  --border-color:          #d0d0d0;
+  --border-color-hover:    #aaaaaa;
+
+  --accent-gold:           #d4a017;
+  --accent-gold-muted:     rgba(212, 160, 23, 0.15);
+  --accent-purple:         #c41e3a;
+  --accent-purple-muted:   rgba(196, 30, 58, 0.12);
+  --accent-blue:           #0078d4;
+
+  --success-color:         #107c10;
+  --warning-color:         #c57c00;
+  --error-color:           #d13438;
+  --info-color:            #0078d4;
+
+  --header-bg:             #ffffff;
+  --header-bg-rgb:         255, 255, 255;
+  --selection-bg:          rgba(0, 0, 0, 0.05);
+  --input-bg:              #f5f5f5;
+  --scrollbar-thumb:       rgba(0, 0, 0, 0.15);
+
+  --tier-select:           #0a9e7a;
+  --tier-select-bg:        rgba(10, 158, 122, 0.1);
+  --tier-deluxe:           #c2286a;
+  --tier-deluxe-bg:        rgba(194, 40, 106, 0.1);
+  --tier-premium:          #b53a7a;
+  --tier-premium-bg:       rgba(181, 58, 122, 0.1);
+  --tier-ultra:            #b38600;
+  --tier-ultra-bg:         rgba(179, 134, 0, 0.1);
+  --tier-exclusive:        #d13438;
+  --tier-exclusive-bg:     rgba(209, 52, 56, 0.1);
+
+  --gradient-1:            linear-gradient(160deg, #f2f2f2 0%, #e8e8e8 100%);
+  --gradient-accent:       linear-gradient(135deg, #0078d4, #c41e3a);
+  --gradient-card:         linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+
+  --shadow-sm:             0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:             0 8px 24px rgba(0,0,0,0.12);
+  --shadow-lg:             0 20px 60px rgba(0,0,0,0.18);
+  --shadow-glow-purple:    0 0 20px rgba(196, 30, 58, 0.2);
+  --shadow-glow-blue:      0 0 20px rgba(0, 120, 212, 0.2);
+
+  --accent-purple-rgb:     196, 30, 58;
+  --bg-secondary-rgb:      232, 232, 232;
+  --bg-card-rgb:           255, 255, 255;
 }
 
-/* Midnight Theme */
+/* ============================================================
+   MIDNIGHT THEME
+   ============================================================ */
 [data-theme="Midnight"] {
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-card: #0d1117;
-  --ally-color: #58a6ff;
-  --enemy-color: #ff4655;
-  --text-primary: #c9d1d9;
-  --text-secondary: #8b949e;
-  --border-color: #30363d;
-  --accent-gold: #ffd700;
-  --accent-purple: #bd3944;
-  --success-color: #3fb950;
-  --header-bg: #010409;
-  --selection-bg: #1f6feb;
-  --tier-select: #477db2;
-  --tier-deluxe: #009e84;
-  --tier-premium: #d1548c;
-  --tier-exclusive: #f4955a;
-  --tier-ultra: #bda652;
-  --gradient-1: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-  --gradient-accent: linear-gradient(135deg, #58a6ff, #bd3944);
-  --bg-secondary-rgb: 22, 27, 34;
-  --bg-card-rgb: 13, 17, 23;
+  --bg-primary:            #080c12;
+  --bg-secondary:          #0d1117;
+  --bg-card:               #111827;
+  --bg-card-hover:         #151f2e;
+  --bg-overlay:            rgba(0, 0, 0, 0.7);
+
+  --ally-color:            #58a6ff;
+  --ally-color-muted:      rgba(88, 166, 255, 0.12);
+  --enemy-color:           #ff4655;
+  --enemy-color-muted:     rgba(255, 70, 85, 0.12);
+
+  --text-primary:          #c9d1d9;
+  --text-secondary:        #8b949e;
+  --text-muted:            #4a5568;
+
+  --border-color:          #1e2938;
+  --border-color-hover:    #30363d;
+
+  --accent-gold:           #e3b341;
+  --accent-gold-muted:     rgba(227, 179, 65, 0.12);
+  --accent-purple:         #7c3aed;
+  --accent-purple-muted:   rgba(124, 58, 237, 0.15);
+  --accent-blue:           #58a6ff;
+
+  --success-color:         #3fb950;
+  --warning-color:         #d29922;
+  --error-color:           #f85149;
+  --info-color:            #58a6ff;
+
+  --header-bg:             #060a0f;
+  --header-bg-rgb:         6, 10, 15;
+  --selection-bg:          rgba(255, 255, 255, 0.05);
+  --input-bg:              #0a0f18;
+  --scrollbar-thumb:       rgba(255, 255, 255, 0.08);
+
+  --tier-select:           #0cebb8;
+  --tier-select-bg:        rgba(12, 235, 184, 0.08);
+  --tier-deluxe:           #e04685;
+  --tier-deluxe-bg:        rgba(224, 70, 133, 0.08);
+  --tier-premium:          #d1548c;
+  --tier-premium-bg:       rgba(209, 84, 140, 0.08);
+  --tier-ultra:            #e3b341;
+  --tier-ultra-bg:         rgba(227, 179, 65, 0.08);
+  --tier-exclusive:        #f85149;
+  --tier-exclusive-bg:     rgba(248, 81, 73, 0.08);
+
+  --gradient-1:            linear-gradient(160deg, #080c12 0%, #0d1117 100%);
+  --gradient-accent:       linear-gradient(135deg, #58a6ff, #7c3aed);
+  --gradient-card:         linear-gradient(135deg, #111827 0%, #0d1117 100%);
+
+  --shadow-sm:             0 2px 8px rgba(0,0,0,0.5);
+  --shadow-md:             0 8px 24px rgba(0,0,0,0.6);
+  --shadow-lg:             0 20px 60px rgba(0,0,0,0.7);
+  --shadow-glow-purple:    0 0 20px rgba(124, 58, 237, 0.3);
+  --shadow-glow-blue:      0 0 20px rgba(88, 166, 255, 0.3);
+
+  --accent-purple-rgb:     124, 58, 237;
+  --bg-secondary-rgb:      13, 17, 23;
+  --bg-card-rgb:           17, 24, 39;
 }
 
-/* Valorant Theme */
+/* ============================================================
+   VALORANT THEME
+   ============================================================ */
 [data-theme="Valorant"] {
-  --bg-primary: #0f1923;
-  --bg-secondary: #1b2838;
-  --bg-card: #0f1923;
-  --ally-color: #ff4655;
-  --enemy-color: #ff4655;
-  --text-primary: #ffffff;
-  --text-secondary: #ffffff;
-  --border-color: #ff4655;
-  --accent-gold: #ffd700;
-  --accent-purple: #ff4655;
-  --success-color: #ff4655;
-  --header-bg: #111111;
-  --selection-bg: #ff4655;
-  --tier-select: #477db2;
-  --tier-deluxe: #009e84;
-  --tier-premium: #d1548c;
-  --tier-exclusive: #f4955a;
-  --tier-ultra: #bda652;
-  --gradient-1: linear-gradient(135deg, #0f1923 0%, #1b2838 100%);
-  --gradient-accent: linear-gradient(135deg, #ff4655, #ffd700);
-  --bg-secondary-rgb: 27, 40, 56;
-  --bg-card-rgb: 15, 25, 35;
+  --bg-primary:            #0f1923;
+  --bg-secondary:          #151f2e;
+  --bg-card:               #1a2535;
+  --bg-card-hover:         #1e2c40;
+  --bg-overlay:            rgba(0, 0, 0, 0.65);
+
+  --ally-color:            #ff4655;
+  --ally-color-muted:      rgba(255, 70, 85, 0.15);
+  --enemy-color:           #ff9a3c;
+  --enemy-color-muted:     rgba(255, 154, 60, 0.15);
+
+  --text-primary:          #ece8e1;
+  --text-secondary:        #9fa8b0;
+  --text-muted:            #5a6472;
+
+  --border-color:          #1f2e3f;
+  --border-color-hover:    #ff4655;
+
+  --accent-gold:           #ffd700;
+  --accent-gold-muted:     rgba(255, 215, 0, 0.15);
+  --accent-purple:         #ff4655;
+  --accent-purple-muted:   rgba(255, 70, 85, 0.15);
+  --accent-blue:           #00c4ff;
+
+  --success-color:         #4caf50;
+  --warning-color:         #ff9a3c;
+  --error-color:           #ff4655;
+  --info-color:            #00c4ff;
+
+  --header-bg:             #0a111a;
+  --header-bg-rgb:         10, 17, 26;
+  --selection-bg:          rgba(255, 70, 85, 0.1);
+  --input-bg:              #0c151e;
+  --scrollbar-thumb:       rgba(255, 70, 85, 0.25);
+
+  --tier-select:           #0cebb8;
+  --tier-select-bg:        rgba(12, 235, 184, 0.1);
+  --tier-deluxe:           #e04685;
+  --tier-deluxe-bg:        rgba(224, 70, 133, 0.1);
+  --tier-premium:          #d1548c;
+  --tier-premium-bg:       rgba(209, 84, 140, 0.1);
+  --tier-ultra:            #ffd700;
+  --tier-ultra-bg:         rgba(255, 215, 0, 0.1);
+  --tier-exclusive:        #ff4655;
+  --tier-exclusive-bg:     rgba(255, 70, 85, 0.1);
+
+  --gradient-1:            linear-gradient(160deg, #0f1923 0%, #151f2e 100%);
+  --gradient-accent:       linear-gradient(135deg, #ff4655, #ffd700);
+  --gradient-card:         linear-gradient(135deg, #1a2535 0%, #0f1923 100%);
+
+  --shadow-sm:             0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:             0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg:             0 20px 60px rgba(0,0,0,0.6);
+  --shadow-glow-purple:    0 0 20px rgba(255, 70, 85, 0.3);
+  --shadow-glow-blue:      0 0 20px rgba(0, 196, 255, 0.3);
+
+  --accent-purple-rgb:     255, 70, 85;
+  --bg-secondary-rgb:      21, 31, 46;
+  --bg-card-rgb:           26, 37, 53;
 }
 
-/* Default to Dark theme */
-:root {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #252525;
-  --bg-card: #1e1e1e;
-  --ally-color: #007acc;
-  --enemy-color: #ff4655;
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --border-color: #333333;
-  --accent-gold: #ffd700;
-  --accent-purple: #bd3944;
-  --success-color: #4caf50;
-  --header-bg: #2b2b2b;
-  --selection-bg: #3d3d3d;
-  --tier-select: #0cebb8;
-  --tier-deluxe: #e04685;
-  --tier-premium: #d1548e;
-  --tier-ultra: #ffd700;
-  --tier-exclusive: #ff4655;
-  --gradient-1: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-  --gradient-accent: linear-gradient(135deg, #007acc, #bd3944);
-  --bg-secondary-rgb: 37, 37, 37;
-  --bg-card-rgb: 30, 30, 30;
-}
-
-/* Global Styles */
-* {
+/* ============================================================
+   GLOBAL BASE STYLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
   background: var(--gradient-1);
   color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-accent);
-  border-radius: 10px;
-  border: 2px solid var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-purple);
-}
-
-/* Selection Styling */
-::selection {
-  background: var(--accent-purple);
-  color: white;
-}
-
-::-moz-selection {
-  background: var(--accent-purple);
-  color: white;
-}
-
-/* Links */
 a {
-  color: var(--ally-color);
+  color: var(--accent-blue);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s;
 }
+a:hover { color: var(--accent-gold); }
 
-a:hover {
-  color: var(--accent-gold);
-}
-
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rajdhani', 'DM Sans', sans-serif;
   color: var(--text-primary);
   line-height: 1.2;
   font-weight: 700;
 }
 
-/* Utility Classes */
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar       { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection       { background: var(--accent-purple); color: #fff; }
+::-moz-selection  { background: var(--accent-purple); color: #fff; }
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -209,91 +344,70 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-.shadow-sm {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.shadow-md {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-md);
 }
 
-.shadow-lg {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.shadow-xl {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+  50%       { transform: scale(1.04); box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.15); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out;
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
 }
 
-.animate-pulse {
-  animation: pulse 2s infinite;
-}
+.animate-fade-in    { animation: fadeIn 0.4s ease; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease; }
 
-/* Responsive Typography */
+/* ============================================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================================ */
 @media (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
-  }
-}
-
-/* Print Styles */
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-  
-  .no-print {
-    display: none;
-  }
+  body  { font-size: 0.95rem; }
+  h1    { font-size: 2rem; }
+  h2    { font-size: 1.5rem; }
+  h3    { font-size: 1.25rem; }
 }
