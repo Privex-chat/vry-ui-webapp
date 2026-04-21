@@ -79,9 +79,9 @@
       <div v-if="!hasMatchData" class="no-match">
         <div class="no-match-icon">⚠️</div>
         <span class="error-text">Couldn't fetch match or no match found in cache!</span>
-        <p class="error-description">Make sure vRY is running and you're in a match</p>
+        <p class="error-description">Make sure VRY-UI is running and you're in a match</p>
         <button @click="downloadVRY" class="btn vry-button">
-          <span class="btn-inner">Download vRY {{ version }}</span>
+          <span class="btn-inner">Download VRY-UI {{ version }}</span>
         </button>
       </div>
 
