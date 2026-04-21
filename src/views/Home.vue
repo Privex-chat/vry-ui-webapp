@@ -133,22 +133,6 @@
           </div>
         </div>
 
-        <div class="feature-block">
-          <div class="feature-text">
-            <div class="feature-tag">Team Info</div>
-            <h3>Party Detection</h3>
-            <p>Suspected that Reyna and Skye duo-queued? Now you know for certain.</p>
-            <ul class="feature-points">
-              <li>Color-coded party groupings</li>
-              <li>Detects full stacks vs. solos</li>
-              <li>Works for both teams</li>
-            </ul>
-          </div>
-          <div class="feature-media">
-            <img src="assets/Party.png" alt="Party Indicator" class="feature-img">
-          </div>
-        </div>
-
         <div class="feature-block reverse">
           <div class="feature-text">
             <div class="feature-tag">Performance</div>
