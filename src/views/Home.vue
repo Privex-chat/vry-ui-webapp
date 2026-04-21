@@ -269,8 +269,34 @@
     <!-- Footer -->
     <footer class="footer" id="founders">
       <div class="footer-content">
+        <!-- Developer Section (above founders) -->
+        <div class="developer-section">
+          <h3 class="team-subtitle">Developer</h3>
+          <div class="developer-card">
+            <a href="https://github.com/Privex-chat" target="_blank" class="dev-link">
+              <img 
+                src="https://cdn.discordapp.com/avatars/1053965380957241344/54d94c23a849e37afccbcac448c1238d.png" 
+                alt="Sonix" 
+                class="dev-avatar"
+              >
+            </a>
+            <div class="dev-info">
+              <div class="dev-name">Sonix</div>
+              <div class="dev-links">
+                <a href="https://github.com/Privex-chat" target="_blank" class="dev-social-link">
+                  <img src="assets/GitHub.png" alt="GitHub" class="dev-icon">
+                </a>
+                <a href="https://discord.com/users/1053965380957241344" target="_blank" class="dev-social-link">
+                  <img src="assets/Discord.png" alt="Discord" class="dev-icon">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Founders Section (now smaller) -->
         <div class="founders-section">
-          <h2 class="footer-title">Meet the Founders</h2>
+          <h3 class="footer-title">Meet the Founders</h3>
           <div class="founders-grid">
             <a href="https://github.com/zayKenyon" target="_blank" class="founder-card">
               <img 
@@ -296,7 +322,6 @@
           </div>
         </div>
 
-        
         <div class="footer-bottom">
           <p>VALORANT Rank Yoinker is Not affiliated with Riot Games.</p>
         </div>
@@ -702,17 +727,92 @@ export default {
   margin: 0 auto;
 }
 
+/* Developer Section */
+.developer-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.team-subtitle {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.developer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dev-link {
+  display: block;
+  transition: transform 0.3s;
+}
+
+.dev-link:hover {
+  transform: scale(1.05);
+}
+
+.dev-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-purple);
+  transition: all 0.3s;
+}
+
+.dev-avatar:hover {
+  box-shadow: 0 0 30px rgba(255, 70, 85, 0.5);
+  border-color: var(--accent-gold);
+}
+
+.dev-info {
+  text-align: center;
+}
+
+.dev-name {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dev-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.dev-social-link {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.dev-social-link:hover {
+  transform: translateY(-3px);
+}
+
+.dev-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Founders Section (smaller) */
 .footer-title {
   text-align: center;
   color: var(--text-primary);
-  margin-bottom: 3rem;
-  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem; /* reduced from 2rem */
+  font-weight: 600;
 }
 
 .founders-grid {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 3rem;
   margin-bottom: 3rem;
 }
 
@@ -723,15 +823,15 @@ export default {
 }
 
 .founder-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .founder-avatar {
-  width: 120px;
-  height: 120px;
+  width: 80px;  /* reduced from 120px */
+  height: 80px;
   border-radius: 50%;
   border: 3px solid var(--accent-purple);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   transition: all 0.3s;
 }
 
@@ -749,7 +849,7 @@ export default {
 .founder-name {
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* slightly reduced */
 }
 
 .founder-role {
@@ -831,6 +931,7 @@ export default {
   .founders-grid {
     flex-direction: column;
     gap: 2rem;
+    align-items: center;
   }
   
   .footer-links {
