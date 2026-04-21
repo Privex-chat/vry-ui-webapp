@@ -63,17 +63,17 @@
   --tier-exclusive:        #ff4655;
   --tier-exclusive-bg:     rgba(255, 70, 85, 0.1);
 
-  /* Gradients */
+  /* Gradients — monochromatic, no rainbow */
   --gradient-1:            linear-gradient(160deg, #111111 0%, #1a1a1a 100%);
-  --gradient-accent:       linear-gradient(135deg, #007acc, #bd3944);
+  --gradient-accent:       linear-gradient(135deg, #bd3944 0%, #8f2930 100%);
   --gradient-card:         linear-gradient(135deg, #1e1e1e 0%, #181818 100%);
 
   /* Shadows */
   --shadow-sm:             0 2px 8px rgba(0,0,0,0.3);
   --shadow-md:             0 8px 24px rgba(0,0,0,0.4);
   --shadow-lg:             0 20px 60px rgba(0,0,0,0.5);
-  --shadow-glow-purple:    0 0 20px rgba(189, 57, 68, 0.3);
-  --shadow-glow-blue:      0 0 20px rgba(0, 180, 216, 0.3);
+  --shadow-glow-purple:    0 0 20px rgba(189, 57, 68, 0.25);
+  --shadow-glow-blue:      0 0 20px rgba(0, 180, 216, 0.25);
 
   /* RGB for rgba() usage */
   --accent-purple-rgb:     189, 57, 68;
@@ -132,14 +132,14 @@
   --tier-exclusive-bg:     rgba(209, 52, 56, 0.1);
 
   --gradient-1:            linear-gradient(160deg, #f2f2f2 0%, #e8e8e8 100%);
-  --gradient-accent:       linear-gradient(135deg, #0078d4, #c41e3a);
+  --gradient-accent:       linear-gradient(135deg, #c41e3a 0%, #9e1a2f 100%);
   --gradient-card:         linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
 
   --shadow-sm:             0 2px 8px rgba(0,0,0,0.08);
   --shadow-md:             0 8px 24px rgba(0,0,0,0.12);
   --shadow-lg:             0 20px 60px rgba(0,0,0,0.18);
-  --shadow-glow-purple:    0 0 20px rgba(196, 30, 58, 0.2);
-  --shadow-glow-blue:      0 0 20px rgba(0, 120, 212, 0.2);
+  --shadow-glow-purple:    0 0 20px rgba(196, 30, 58, 0.18);
+  --shadow-glow-blue:      0 0 20px rgba(0, 120, 212, 0.18);
 
   --accent-purple-rgb:     196, 30, 58;
   --bg-secondary-rgb:      232, 232, 232;
@@ -170,8 +170,8 @@
 
   --accent-gold:           #e3b341;
   --accent-gold-muted:     rgba(227, 179, 65, 0.12);
-  --accent-purple:         #7c3aed;
-  --accent-purple-muted:   rgba(124, 58, 237, 0.15);
+  --accent-purple:         #58a6ff;
+  --accent-purple-muted:   rgba(88, 166, 255, 0.15);
   --accent-blue:           #58a6ff;
 
   --success-color:         #3fb950;
@@ -197,16 +197,16 @@
   --tier-exclusive-bg:     rgba(248, 81, 73, 0.08);
 
   --gradient-1:            linear-gradient(160deg, #080c12 0%, #0d1117 100%);
-  --gradient-accent:       linear-gradient(135deg, #58a6ff, #7c3aed);
+  --gradient-accent:       linear-gradient(135deg, #58a6ff 0%, #3a85d4 100%);
   --gradient-card:         linear-gradient(135deg, #111827 0%, #0d1117 100%);
 
   --shadow-sm:             0 2px 8px rgba(0,0,0,0.5);
   --shadow-md:             0 8px 24px rgba(0,0,0,0.6);
   --shadow-lg:             0 20px 60px rgba(0,0,0,0.7);
-  --shadow-glow-purple:    0 0 20px rgba(124, 58, 237, 0.3);
-  --shadow-glow-blue:      0 0 20px rgba(88, 166, 255, 0.3);
+  --shadow-glow-purple:    0 0 20px rgba(88, 166, 255, 0.25);
+  --shadow-glow-blue:      0 0 20px rgba(88, 166, 255, 0.25);
 
-  --accent-purple-rgb:     124, 58, 237;
+  --accent-purple-rgb:     88, 166, 255;
   --bg-secondary-rgb:      13, 17, 23;
   --bg-card-rgb:           17, 24, 39;
 }
@@ -262,14 +262,14 @@
   --tier-exclusive-bg:     rgba(255, 70, 85, 0.1);
 
   --gradient-1:            linear-gradient(160deg, #0f1923 0%, #151f2e 100%);
-  --gradient-accent:       linear-gradient(135deg, #ff4655, #ffd700);
+  --gradient-accent:       linear-gradient(135deg, #ff4655 0%, #cc2f3d 100%);
   --gradient-card:         linear-gradient(135deg, #1a2535 0%, #0f1923 100%);
 
   --shadow-sm:             0 2px 8px rgba(0,0,0,0.4);
   --shadow-md:             0 8px 24px rgba(0,0,0,0.5);
   --shadow-lg:             0 20px 60px rgba(0,0,0,0.6);
-  --shadow-glow-purple:    0 0 20px rgba(255, 70, 85, 0.3);
-  --shadow-glow-blue:      0 0 20px rgba(0, 196, 255, 0.3);
+  --shadow-glow-purple:    0 0 20px rgba(255, 70, 85, 0.25);
+  --shadow-glow-blue:      0 0 20px rgba(0, 196, 255, 0.25);
 
   --accent-purple-rgb:     255, 70, 85;
   --bg-secondary-rgb:      21, 31, 46;
@@ -337,11 +337,9 @@ img { display: block; max-width: 100%; }
   padding: 0 2rem;
 }
 
+/* Solid accent color — no clip-path gradient trick */
 .gradient-text {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-purple);
 }
 
 .card {
