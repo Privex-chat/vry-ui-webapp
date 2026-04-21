@@ -421,7 +421,7 @@ export default {
     
     async getVersion() {
       try {
-        const response = await fetch('https://api.github.com/repos/isaacKenyon/VALORANT-rank-yoinker/releases')
+        const response = await fetch('https://api.github.com/repos/Privex-chat/vry-ui/releases')
         const data = await response.json()
         if (data && data.length > 0) {
           this.version = data[0].tag_name
@@ -436,7 +436,7 @@ export default {
       if (this.vryhref) {
         window.location.href = this.vryhref
       } else {
-        window.open('https://github.com/isaacKenyon/VALORANT-rank-yoinker/releases/latest')
+        window.open('https://github.com/Privex-chat/vry-ui/releases/latest')
       }
     },
     

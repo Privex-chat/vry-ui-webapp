@@ -318,7 +318,7 @@ export default {
   methods: {
     async getVersion() {
       try {
-        const response = await fetch('https://api.github.com/repos/isaacKenyon/VALORANT-rank-yoinker/releases')
+        const response = await fetch('https://api.github.com/repos/Privex-chat/vry-ui/releases')
         const data = await response.json()
 
         if (data && data.length > 0) {

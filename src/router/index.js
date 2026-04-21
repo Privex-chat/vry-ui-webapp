@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: '/github',
-    redirect: 'https://github.com/isaacKenyon/VALORANT-rank-yoinker'
+    redirect: 'https://github.com/Privex-chat/vry-ui'
   }
 ]
 
