@@ -275,7 +275,7 @@ export default {
           data.forEach(release => release.assets.forEach(a => { total += a.download_count }))
           this.downloads = total.toLocaleString()
         }
-      } catch {}
+      } catch (_e) { /* ignore */ }
     }
   },
   mounted() {

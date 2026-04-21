@@ -439,12 +439,12 @@ export default {
                 setTimeout(() => this.checkCurrentLoadout(), 500)
               }
 
-              try { localStorage.setItem('loadoutJSON', JSON.stringify(json)) } catch {}
+              try { localStorage.setItem('loadoutJSON', JSON.stringify(json)) } catch (_e) { /* ignore */ }
             }
           } catch (e) { console.error('WS parse error:', e) }
         }
 
-        this.websocket.onerror = () => { /* handled in onclose */ }
+        this.websocket.onerror = (_err) => { void _err; }
 
         this.websocket.onclose = () => {
           this.wsStatus = 'disconnected'
@@ -472,7 +472,7 @@ export default {
           this.version = data[0].tag_name
           this.vryhref = data[0].assets?.[0]?.browser_download_url || ''
         }
-      } catch {}
+      } catch (_e) { /* ignore */ }
     },
     downloadVRY() {
       window.open(this.vryhref || 'https://github.com/Privex-chat/vry-ui/releases/latest', '_blank')
@@ -487,7 +487,7 @@ export default {
         this.selectedTier       = p.selectedTier       || null
         this.rgbBuddyAlert      = p.rgbBuddyAlert !== false
         this.skinAlertsEnabled  = p.skinAlertsEnabled  || false
-      } catch {}
+      } catch (_e) { /* ignore */ }
     },
     savePreferences() {
       try {
@@ -498,7 +498,7 @@ export default {
           rgbBuddyAlert:      this.rgbBuddyAlert,
           skinAlertsEnabled:  this.skinAlertsEnabled,
         }))
-      } catch {}
+      } catch (_e) { /* ignore */ }
     },
   },
 
@@ -525,7 +525,7 @@ export default {
         this.teamScores   = cached.scores || null
         this.hasMatchData = Object.keys(this.Players).length > 0
       }
-    } catch {}
+    } catch (_e) { /* ignore */ }
 
     this.connectWebSocket()
   },
